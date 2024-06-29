@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title%}
+    <title> หน้าแรกของเว็บไซต์</title>
+{% endblock %}
+
+{% block content %}
+
+    <h2 class="text-center">ข้อมูลประชาการทั้งหมด</h2>
+    <hr>
+
+    {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            <strong>{{message}}</strong>
+        </div>
+        {% endfor %}
+    {% endif %}
+
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">รหัสประชากร</th>
+            <th scope="col">ชื่อประชากร</th>
+            <th scope="col">อายุ</th>
+            <th scope="col">วันที่เพื่มข้อมูล</th>
+            <th scope="col">แก้ไข</th>
+            <th scope="col">ลบ</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for personal in personals%}
+            <tr>
+                <th scope="row">{{personal.id}}</th>
+                <td>{{personal.name}}</td>
+                <td>{{personal.age}}</td>
+                <td>{{personal.date}}</td>
+                <td> <a href="edit/{{personal.id}}" class="btn btn-warning"> แก้ไข</a> </td>
+                <td> <a href="#" class="btn btn-danger"> ลบ</a> </td>
+              </tr>
+    
+            {% endfor %}
+        </tbody>
+      </table>
+
+{% endblock %}
